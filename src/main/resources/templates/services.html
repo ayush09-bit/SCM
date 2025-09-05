@@ -1,14 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<html lang="en" th:replace="~{base :: parent(~{:: #content},~{::title},~{})}">
+    <title>servicea page</title>
 <body>
-    <h1>ayush chaudhary</h1>
-    <hr>
-     <div th:insert="~{base :: parent('services one','services two')}"></div>
-</body>
+    
+    <div id="content">
+        this is services page page content
+    </div>
+    
 </body>
 </html>
