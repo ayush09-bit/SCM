@@ -1,7 +1,11 @@
 package com.Smart_Contact_Manager.demo.users;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -25,10 +29,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class User implements UserDetails  {
 
     @Id
-
     private String userId;
     @Column(name="user_name", nullable = false)
     private String name;
@@ -42,17 +45,31 @@ public class User {
     private String phonenumber;
 
 
-    private boolean enabled=false;
+    private boolean enabled=true;
     private boolean emailverified=false;
     private boolean phoneverified=false;
 
     // self, google, github
-    @Enumerated(EnumType.STRING)
+    @Enumerated(value =  EnumType.STRING)
+    @Column(nullable = false)
     private Providers provider=Providers.SELF;
     private String provideruserId;
 
 
     @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
     private List<Contact> contact = new ArrayList<>();
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+    }
+
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
 
 }
