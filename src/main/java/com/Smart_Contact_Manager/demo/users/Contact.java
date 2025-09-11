@@ -1,4 +1,4 @@
-package com.Smart_Contact_Manager.users;
+package com.Smart_Contact_Manager.demo.users;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class Contact {
     private String contactId;
     private String name;
     private String email;
-    private String Pnumber;
+    private String phonenumber;
     private String address;
     private String picture;
     @Column(length = 10000)

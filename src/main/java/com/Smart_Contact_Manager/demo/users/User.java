@@ -1,4 +1,4 @@
-package com.Smart_Contact_Manager.users;
+package com.Smart_Contact_Manager.demo.users;
 
 import java.util.ArrayList;
 import java.util.List;
