@@ -23,8 +23,15 @@ public class PageController {
     @Autowired
     private UserServices userService;
 
+     @GetMapping("/")
+    public String index()
+    {
+        System.out.println("index page loading");
+        return "home";
+     }
+
     @GetMapping("/home")
-    public String home(Model model){
+    public String home(){
 
         System.out.println("home pagge handler");
         //semding data to view

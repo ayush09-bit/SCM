@@ -4,7 +4,6 @@ package com.Smart_Contact_Manager.demo.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -70,19 +69,32 @@ public class SecurityConfig {
             formLogin.loginPage("/login");
             formLogin.loginProcessingUrl("/authenticate");
             formLogin.successForwardUrl("/user/dashboard");
-            formLogin.failureUrl("/login?error=true");
+            // formLogin.failureForwardUrl("/login?error=true");
+            // formLogin.defaultSuccessUrl("/home");
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
             
             //formLogin.failureHandler(null);
            });
+           httpSecurity.oauth2Login(oauth2 -> 
+             {oauth2
+             .loginPage("/login");
+             }
         
-        httpSecurity.csrf(AbstractHttpConfigurer::disable);
+             );
+
+        
+           httpSecurity.csrf(AbstractHttpConfigurer::disable);
            httpSecurity.logout(logoutForm ->
-           {
-            logoutForm.logoutUrl("/logout");
-            logoutForm.logoutSuccessUrl("/login?logout=true");
-           });
+           logoutForm
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/login?logout=true")
+            .invalidateHttpSession(true)
+            .clearAuthentication(true)
+            .deleteCookies("JSESSIONID", "OAUTH2_AUTHORIZATION_REQUEST")
+           );
+
+           
 
         return httpSecurity.build();
     }
