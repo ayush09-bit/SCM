@@ -13,7 +13,6 @@ import com.Smart_Contact_Manager.demo.users.User;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 
@@ -56,14 +55,14 @@ public class PageController {
         return "contact";
     }
 
-     @GetMapping("/Login")
+     @GetMapping("/login")
     public String loginpage()
     {
         System.out.println("login page loading");
-        return "Login";
+        return "login";
     }
 
-     @GetMapping("/Register")
+     @GetMapping("/register")
     public String signuppage(Model model)
     {
         System.out.println("Register page loading");
@@ -72,7 +71,7 @@ public class PageController {
         // sending default value to form
         //userform.setName("Ayush");
         model.addAttribute("userdata", userform);
-        return "Register";
+        return "register";
     }
 
     //proceesing register
@@ -93,7 +92,7 @@ public class PageController {
         //validate form data
         if(rBindingResult.hasErrors())
         {
-            return "Register";
+            return "register";
         }
 
         //save to database 
@@ -111,7 +110,7 @@ public class PageController {
 
         System.out.println("user saved" + savedUser);
 
-        return "redirect:/Register";
+        return "redirect:/register";
 
     }
 

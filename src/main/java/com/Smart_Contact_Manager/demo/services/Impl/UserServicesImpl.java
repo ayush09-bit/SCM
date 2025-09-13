@@ -7,8 +7,10 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.Smart_Contact_Manager.demo.helper.AppConstants;
 import com.Smart_Contact_Manager.demo.helper.ResourceNotFoundException;
 import com.Smart_Contact_Manager.demo.repositories.UserRepopsitory;
 import com.Smart_Contact_Manager.demo.services.UserServices;
@@ -20,6 +22,9 @@ public class UserServicesImpl implements UserServices {
     @Autowired
     private UserRepopsitory userRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -28,6 +33,13 @@ public class UserServicesImpl implements UserServices {
         //user id must be generated dynamically
         String userId=UUID.randomUUID().toString();
         user.setUserId(userId);
+
+        //password encoder
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //set user role
+
+        user.setRoleList(List.of(AppConstants.ROLE_USER));
+        logger.info(user.getProvider().toString());
 
         return userRepo.save(user);
     }

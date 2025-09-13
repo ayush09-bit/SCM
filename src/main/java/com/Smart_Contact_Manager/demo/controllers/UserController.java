@@ -2,9 +2,9 @@
 package com.Smart_Contact_Manager.demo.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 
 
 @Controller
@@ -13,13 +13,13 @@ public class UserController {
  
 
     //user dashboard page
-    @RequestMapping(value="/dashboard", method=RequestMethod.GET)
+    @PostMapping("/dashboard")
     public String userDashboard() {
         return "user/dashboard";
     }
 
     //user profile page
-     @RequestMapping(value="/profile", method=RequestMethod.GET)
+     @GetMapping("/profile")
     public String userProfile() {
         return "user/profile";
     }
