@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,18 +38,21 @@ public class SecurityConfig {
     @Autowired
     private SecurityCustomerUserDetailService  userDetailsService;
 
-    @Bean
-    public DaoAuthenticationProvider  authenticationProvider()
-    {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        // user detail service object
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        //user password encoder object
-        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+    @Autowired
+    private OAuthAuthencationSuccessHandler handler;
 
-        return daoAuthenticationProvider;
+    // @Bean
+    // public DaoAuthenticationProvider  authenticationProvider()
+    // {
+    //     DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+    //     // user detail service object
+    //     daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+    //     //user password encoder object
+    //     daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
 
-    }
+    //     return daoAuthenticationProvider;
+
+    // }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception
@@ -68,17 +70,19 @@ public class SecurityConfig {
            httpSecurity.formLogin(formLogin -> {
             formLogin.loginPage("/login");
             formLogin.loginProcessingUrl("/authenticate");
-            formLogin.successForwardUrl("/user/dashboard");
+            formLogin.successForwardUrl("/user/profile");
             // formLogin.failureForwardUrl("/login?error=true");
             // formLogin.defaultSuccessUrl("/home");
             formLogin.usernameParameter("email");
             formLogin.passwordParameter("password");
-            
             //formLogin.failureHandler(null);
            });
+
+
            httpSecurity.oauth2Login(oauth2 -> 
              {oauth2
-             .loginPage("/login");
+             .loginPage("/login")
+             .successHandler(handler);
              }
         
              );
