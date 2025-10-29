@@ -1,12 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<html lang="en" th:replace="~{base :: parent(~{:: #content},~{::title},~{::script})}">
+    <title>Dashboard page</title>
 <body>
-    <h1>user dahboard</h1>
-    <a data-th-href="@{'/logout'}">logout</a>
+
+    <div id="content">
+
+    <!--logged in user sidebar-->
+     <div th:if="${loggedinuser}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+    </div>
+    <div class="pl-64 pt-20 " style="height: 1000px;">
+        <div >
+            <h1>user is logged in to Dashboard page <br> <span data-th-text="${loggedinuser.email}"></span> </h1>
+            <h1>this is user logged in section</h1>
+        </div>
+    </div>
+    </div>
+
+    <script>
+        console.log("profile page")
+    </script>
+    
 </body>
 </html>

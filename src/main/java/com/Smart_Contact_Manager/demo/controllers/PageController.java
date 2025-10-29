@@ -87,7 +87,7 @@ public class PageController {
     {
         System.out.println("Processing Registration");
         //fetch form data
-        //userform --> user
+        //userform --> userdata
        
         User user = new User();
         user.setName(userdata.getName());

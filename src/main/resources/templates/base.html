@@ -14,9 +14,17 @@
 <body class="dark:bg-gray-900 bg-gray-100 dark:text-white text-black">
     <!--common header-->
 
-    <div data-th-replace="~{navbar :: header}"></div>
+<!--logged in user header-->
+    <div th:if="${loggedinuser}">
+        <div data-th-replace="~{user/user_navbar :: user-navbar}"></div>
+    </div>
 
-    <div class="p-4">
+<!--normal  user header-->
+    <div th:unless="${loggedinuser}">
+        <div data-th-replace="~{navbar :: header}"></div>
+    </div>
+
+    <div class=" ">
         <section  data-th-replace="${content}"></section>
     </div>
     

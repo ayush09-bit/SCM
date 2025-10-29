@@ -15,7 +15,7 @@ import com.Smart_Contact_Manager.demo.users.User;
 @ControllerAdvice
 public class RootController {
 
-    Logger logger = LoggerFactory.getLogger(UserController.class);
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     private  UserServices userServices;
@@ -35,7 +35,7 @@ public class RootController {
         // get user from database
         System.out.println(user.getName());
         System.out.println(user.getEmail());
-        model.addAttribute("username", user);
+        model.addAttribute("loggedinuser", user); //(saves value of logged in user, gives value to the model to store values)
 
         
     }
