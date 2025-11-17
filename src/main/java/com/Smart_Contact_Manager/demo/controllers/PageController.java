@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.Smart_Contact_Manager.demo.form.UserForm;
 import com.Smart_Contact_Manager.demo.helper.Message;
 import com.Smart_Contact_Manager.demo.helper.MessageType;
 import com.Smart_Contact_Manager.demo.services.UserServices;
@@ -92,9 +93,10 @@ public class PageController {
         User user = new User();
         user.setName(userdata.getName());
         user.setEmail(userdata.getEmail());
-        user.setPhonenumber(userdata.getPhonenumber());
+        user.setPhoneNumber(userdata.getPhoneNumber());
         user.setPassword(userdata.getPassword());
         user.setAbout(userdata.getAbout());
+        user.setEnabled(false);
         user.setProfilepic("https://www.google.com/search?sca_esv=0ba2932d10fe8916&udm=2&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIemkjk18Cn72Gp24fGkjjh6yoZyhlDvfYYroN834IkBBoW9T-W8pUltI7zOQsVGtT6W3-fOQqJRRIWvecOfco6Uomryd9fNTXSzVf5jYZhVNPyXjyfFWcHFvBKuZk9bpAkoxfyYoS51lwH2fpJuyxfszt3UO4YxCgREDdhFugGAAZ29Z6pg&q=profile+pic&sa=X&ved=2ahUKEwjaysLWiMmPAxXBbmwGHVuNJ-IQtKgLegQIExAB&biw=767&bih=730&dpr=1.25#vhid=jKIiF0rAa_qOjM&vssid=mosaic");
         //validate form data
         if(rBindingResult.hasErrors())

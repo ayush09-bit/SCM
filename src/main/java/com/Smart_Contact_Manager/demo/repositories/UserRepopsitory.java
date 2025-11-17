@@ -10,6 +10,9 @@ public interface UserRepopsitory extends JpaRepository<User, String> //<with whi
  {
     Optional<User> findByEmail(String email);
 
+    Optional<User> findByEmailToken(String emailToken);
+
+
 }
 
 

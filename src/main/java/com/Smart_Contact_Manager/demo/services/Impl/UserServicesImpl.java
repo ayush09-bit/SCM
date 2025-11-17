@@ -11,8 +11,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.Smart_Contact_Manager.demo.helper.AppConstants;
+import com.Smart_Contact_Manager.demo.helper.Helper;
 import com.Smart_Contact_Manager.demo.helper.ResourceNotFoundException;
 import com.Smart_Contact_Manager.demo.repositories.UserRepopsitory;
+import com.Smart_Contact_Manager.demo.services.EmailService;
 import com.Smart_Contact_Manager.demo.services.UserServices;
 import com.Smart_Contact_Manager.demo.users.User;
 
@@ -24,6 +26,9 @@ public class UserServicesImpl implements UserServices {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private EmailService emailService;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -41,7 +46,16 @@ public class UserServicesImpl implements UserServices {
         user.setRoleList(List.of(AppConstants.ROLE_USER));
         logger.info(user.getProvider().toString());
 
-        return userRepo.save(user);
+
+        String emailToken = UUID.randomUUID().toString();
+        user.setEmailToken(emailToken);
+        User savedUser = userRepo.save(user);
+
+        String emailLink = Helper.getLinkForEmailVerification(emailToken);
+
+        emailService.sendEmail(savedUser.getEmail(), "verify Account", emailLink);
+
+        return savedUser;
     }
 
     @Override
@@ -59,7 +73,7 @@ public class UserServicesImpl implements UserServices {
         user2.setName(user.getName());
         user2.setEmail(user.getEmail());
         user2.setPassword(user.getPassword());
-        user2.setPhonenumber(user.getPhonenumber());
+        user2.setPhoneNumber(user.getPhoneNumber());
         user2.setAbout(user.getAbout());
         user2.setProfilepic(user.getProfilepic());
         user2.setEnabled(user.isEnabled());

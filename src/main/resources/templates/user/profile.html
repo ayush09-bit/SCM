@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{:: #content},~{::title},~{::script})}">
-    <title data-th-text="${loggedinuser.name}">profile page</title>
+    <title data-th-text="${loggedinuser.name} +' profile' ">profile page</title>
 <body>
 
     <div id="content">
@@ -10,13 +10,14 @@
         <div data-th-replace="~{user/sidebar :: sidebar}"></div>
     </div>
     
-    <div  class="pl-64 pt-20 " style="height: 1000px;">
+    <div  class="sm:pl-68 pt-20 " style="height: 1000px;">
         
-    <h1>user is logged in to profile page <br> <span data-th-text="${loggedinuser.email}"></span> </h1>
-    <h1>this is user logged in section</h1>
+    <h1 class="text-5xl">WELCOME <br> <span  data-th-text="${loggedinuser.email}"></span> </h1>
+    <h1>User is logged in to profile page </h1>
 
     </div>
     </div>
+    
 
     <script>
         console.log("profile page")

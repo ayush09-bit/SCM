@@ -3,6 +3,8 @@ package com.Smart_Contact_Manager.demo.users;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,16 +30,19 @@ public class Contact {
     private String contactId;
     private String name;
     private String email;
-    private String phonenumber;
+    private String phoneNumber;
     private String address;
     private String picture;
     @Column(length = 10000)
     private String description;
     private boolean favourite = false;
-    private String linkedInlinks; 
+    private String linkedInLink; 
+    private String website;
+    private String cloudinaryPicPublicId;
 
     @ManyToOne
-    private User user; 
+    @JsonIgnore
+    private User  user; 
 
      @OneToMany(mappedBy = "contact" , cascade = CascadeType.ALL,fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Social_links> links = new ArrayList<>();

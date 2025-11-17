@@ -16,6 +16,8 @@ public class UserController {
 
     Logger logger = LoggerFactory.getLogger(UserController.class);    
 
+    
+
     //user dashboard page
     @RequestMapping(value = "/dashboard", 
     method = {RequestMethod.GET, RequestMethod.POST})

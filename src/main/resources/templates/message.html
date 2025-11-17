@@ -5,9 +5,9 @@
   data-th-classappend="*{
       'text-' + type + '-800 ' +
       'border-t-4 border-' + type + '-300 ' +
-      'bg-' + type + '-50 ' +
+      'bg-' + type + '-100 ' +
       'dark:text-' + type + '-400 ' +
-      'dark:bg-gray-900 ' +
+      'dark:bg-' + type + '-100 ' +
       'dark:border-' + type + '-800'
   }"
   class="flex items-center p-4 mb-4 rounded-lg text-sm"
@@ -22,7 +22,7 @@
 
   <!-- Message Content -->
   <div>
-    <span class="font-medium" data-th-text="*{content}"></span>
+    <span class="font-bold text-1xl" data-th-text="*{content}"></span>
   </div>
 
   <!-- Clears session message after rendering -->

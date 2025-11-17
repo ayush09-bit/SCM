@@ -1,4 +1,4 @@
-package com.Smart_Contact_Manager.demo.controllers;
+package com.Smart_Contact_Manager.demo.form;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -32,7 +32,7 @@ public class UserForm {
     @NotBlank(message = "About is required")
     private String about;
     @Size(min=10,max=10,message="invalid number")
-    private String phonenumber;
+    private String phoneNumber;
 
 
 }

@@ -45,10 +45,10 @@ public class User implements UserDetails  {
     private String about;
     @Column(columnDefinition = "TEXT")
     private String profilepic;
-    private String phonenumber;
+    private String phoneNumber;
 
 
-    private boolean enabled=true;
+    private boolean enabled=false;
     private boolean emailverified=false;
     private boolean phoneverified=false;
 
@@ -65,6 +65,8 @@ public class User implements UserDetails  {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roleList = new ArrayList<>();
 
+    private String emailToken;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -78,6 +80,10 @@ public class User implements UserDetails  {
     @Override
     public String getUsername() {
         return email;
+    }
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
     }
 
 }
