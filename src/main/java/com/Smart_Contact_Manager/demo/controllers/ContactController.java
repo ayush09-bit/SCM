@@ -139,8 +139,10 @@ public class ContactController {
         Page<Contact> Contacts = contactService.getByUser(user,page,size,sortBy,direction);
         
         model.addAttribute("pageContact", Contacts);
+        
         model.addAttribute("pageSize", AppConstants.PAGE_SIZE);
         model.addAttribute("contactSearchForm", new ContactSearchForm());
+        
 
 
         return "user/contacts";

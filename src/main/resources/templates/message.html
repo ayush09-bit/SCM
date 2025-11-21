@@ -4,27 +4,45 @@
   data-th-fragment="messagebox"
   data-th-classappend="*{
       'text-' + type + '-800 ' +
-      'border-t-4 border-' + type + '-300 ' +
-      'bg-' + type + '-100 ' +
-      'dark:text-' + type + '-400 ' +
-      'dark:bg-' + type + '-100 ' +
-      'dark:border-' + type + '-800'
+      'border-l-4 border-' + type + '-400 ' +
+      'bg-' + type + '-100/60 ' +
+      'dark:text-' + type + '-300 ' +
+      'dark:bg-' + type + '-900/40 ' +
+      'dark:border-' + type + '-600'
   }"
-  class="flex items-center p-4 mb-4 rounded-lg text-sm"
+  class="flex items-start gap-3 p-4 mb-4 rounded-xl 
+         text-sm shadow-lg backdrop-blur-xl 
+         transition-all animate-[fadeIn_0.3s_ease-in-out]
+         border"
   role="alert">
 
-  
-  <!-- SVG Icon -->
-  <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
-       xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-    <path d="M10 .5a9.5 9.5 ... Z"/>
-  </svg>
-
-  <!-- Message Content -->
-  <div>
-    <span class="font-bold text-1xl" data-th-text="*{content}"></span>
+  <!-- Icon -->
+  <div class="mt-1">
+    <svg class="w-5 h-5 opacity-80" aria-hidden="true"
+         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 .5a9.5 9.5 ... Z"/>
+    </svg>
   </div>
 
-  <!-- Clears session message after rendering -->
+  <!-- Text -->
+  <div>
+    <span class="font-semibold text-base" data-th-text="*{content}"></span>
+  </div>
+
+  <!-- Remove Message -->
   <th:block th:text="${@sessionHelper.removeMessage()}"></th:block>
 </div>
+
+<!-- Animation -->
+<style>
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>

@@ -111,7 +111,7 @@ public class PageController {
         //return msg
  
         Message message = Message.builder()
-            .content("Registration successfull")
+            .content("Registration successfull , verification link sent")
             .type(MessageType.green)
             .build();
 

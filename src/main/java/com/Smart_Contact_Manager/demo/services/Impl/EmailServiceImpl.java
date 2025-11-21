@@ -22,7 +22,7 @@ public class EmailServiceImpl implements EmailService {
         message.setTo(to);
         message.setSubject(subject);
         message.setText(body);
-        message.setFrom("SCM@demomailtrap.co");
+        message.setFrom("ayushchaudhary0909@gmail.com");
         eMailSender.send(message);
 
 

@@ -11,13 +11,196 @@
     </div>
 
     <div class="sm:pl-68 pt-20 " style="height: 1000px;">
-            <h1 class="text-5xl">WELCOME <br> <span  data-th-text="${loggedinuser.email}"></span> </h1>
-            <h1>User is logged in to Dashboard page </h1>
+            <div class="min-h-screen  p-6">
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-7xl mx-auto space-y-8">
+
+        <!-- USER INFO CARD -->
+        <div class="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-8">
+            
+            <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+
+                <!-- Profile Picture -->
+                <div>
+                    <!-- Default image for SELF -->
+                    <img th:if="${loggedinuser.provider.name() == 'SELF'}"
+                         src="/images/boy.png"
+                         class="h-32 w-32 rounded-full shadow-lg border-2 border-gray-300 dark:border-gray-700"
+                         alt="default profile">
+
+                    <!-- Google / GitHub image -->
+                    <img th:if="${loggedinuser.provider.name() != 'SELF'}"
+                         th:src="${loggedinuser.profilepic}"
+                         class="h-32 w-32 rounded-full shadow-lg border-2 border-gray-300 dark:border-gray-700"
+                         alt="user profile">
+                </div>
+
+                <!-- USER DETAILS -->
+                <div class="flex-1">
+                    <h1 class="text-3xl font-bold text-gray-800 dark:text-gray-100" 
+                        th:text="${loggedinuser.name}">
+                        User Name
+                    </h1>
+                    
+                    <p class="text-gray-500 dark:text-gray-400"
+                       th:text="${loggedinuser.email}">
+                        email@example.com
+                    </p>
+
+                    <p class="mt-3 text-gray-600 dark:text-gray-300"
+                       th:text="${loggedinuser.about}">
+                        About section
+                    </p>
+
+                    <!-- Badges -->
+                    <div class="flex flex-wrap gap-3 mt-4">
+
+                        <!-- Account Enabled -->
+                        <span class="px-4 py-1 rounded-full text-sm font-semibold
+                                     bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+                              th:text="${loggedinuser.enabled ? 'Account Active' : 'Disabled'}">
+                        </span>
+
+                        <!-- Email Verified -->
+                        <span class="px-4 py-1 rounded-full text-sm font-semibold
+                                     bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300"
+                              th:text="${loggedinuser.emailverified ? 'Email Verified' : 'Email Not Verified'}">
+                        </span>
+
+                        <!-- Phone Verified -->
+                        <span class="px-4 py-1 rounded-full text-sm font-semibold
+                                     bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300"
+                              th:text="${loggedinuser.phoneverified ? 'Phone Verified' : 'Phone Not Verified'}">
+                        </span>
+
+                        <!-- Provider -->
+                        <span class="px-4 py-1 rounded-full text-sm font-semibold
+                                     bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+                              th:text="'Provider: ' + ${loggedinuser.provider}">
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+
+        <!-- CONTACTS SUMMARY CARD -->
+        <div class="bg-white dark:bg-gray-800 shadow-md rounded-2xl p-6 flex justify-between items-center">
+            <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                Your Contacts
+            </h2>
+
+            <div class="text-right">
+                <p class="text-3xl font-bold text-violet-600 dark:text-violet-400"
+                   th:text="${pageContact.totalElements}">0</p>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">Total Saved Contacts</p>
+            </div>
+        </div>
+
+        <!-- CONTACTS GRID -->
+        <div class="max-w-6xl mx-auto mt-10 p-6">
+
+
+        <!-- Contacts Table -->
+<div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg mt-10">
+    <h2 class="text-2xl font-semibold mb-4 text-gray-700 dark:text-gray-200">Favorite Contacts</h2>
+
+    <div class="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
+        <table class="min-w-full bg-white dark:bg-gray-800">
+            <thead>
+                <tr class="bg-gray-100 dark:bg-gray-700 text-left text-gray-600 dark:text-gray-300 uppercase text-sm">
+                    <th class="py-3 px-4">Name</th>
+                    <th class="py-3 px-4">Email</th>
+                    <th class="py-3 px-4">Phone</th>
+                    <th class="py-3 px-4">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+
+                <tr 
+                    th:each="c : ${pageContact.content}"
+                    th:if="${c.favourite}"
+                    th:object="${c}"
+                    class="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+
+
+                    <td class="py-3 px-4 text-gray-800 dark:text-gray-200" th:text="*{name}"></td>
+                    <td class="py-3 px-4 text-gray-800 dark:text-gray-200" th:text="*{email}"></td>
+                    <td class="py-3 px-4 text-gray-800 dark:text-gray-200" th:text="*{phoneNumber}"></td>
+
+                    <td class="py-3 px-4 flex space-x-4">
+
+                        <!-- View Button -->
+                        <button onclick="window.location.href='/user/contacts'"
+                            class="px-3 py-1 rounded-md bg-blue-600 text-white hover:bg-blue-700 text-sm">
+                            View
+                        </button>
+
+
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+
+
+    </div>
     </div>
     </div>
 
+    </div>
+     </div>
+
+    
+<script data-th-src="@{'/js/contacts.js'}"></script>
     <script>
-        console.log("profile page")
+       async function deleteContactAjax(id) {
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "This contact will be deleted permanently",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Delete"
+    }).then(async (result) => {
+
+        if (result.isConfirmed) {
+
+            try {
+
+                const res = await fetch(`${baseURL}/user/contacts/delete/${id}`, {
+                    method: "GET"
+                });
+
+                if (res.ok) {
+                    // Remove the row from table
+                    document.getElementById("row-" + id).remove();
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Deleted!",
+                        text: "Contact removed successfully",
+                        timer: 1000
+                    });
+                }
+
+            } catch (e) {
+                Swal.fire("Error", "Cannot delete contact", "error");
+            }
+        }
+    });
+}
+
     </script>
     
 </body>

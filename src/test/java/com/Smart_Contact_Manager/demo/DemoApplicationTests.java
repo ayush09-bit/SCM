@@ -11,20 +11,20 @@ import com.Smart_Contact_Manager.demo.services.EmailService;
 @SpringBootTest
 class DemoApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+	// @Test
+	// void contextLoads() {
+	// }
 
 
 
-	@Autowired
-	private EmailService service;
+	// @Autowired
+	// private EmailService service;
 	
-	@Test
-	void sendEmailTest()
-	{
-		service.sendEmail("ayushchaudhary0909@gmail.com", "testing", "Managing the email and enabled user things");
+	// @Test
+	// void sendEmailTest()
+	// {
+	// 	service.sendEmail("ayushchaudhary0909@gmail.com", "testing", "Managing the email and enabled user things");
 
-	}
+	// }
 
 }

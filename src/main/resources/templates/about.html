@@ -1,15 +1,164 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{:: #content},~{::title},~{::script})}">
-    <title>about page</title>
+<html lang="en"
+      th:replace="~{base :: parent(~{:: #content}, ~{::title}, ~{::script})}">
+<title>About | Smart Contact Manager</title>
 <body>
-    
-    <div id="content">
-        this is about page content
-    </div>
+<div id="content">
 
-    <script>
-        console.log("about page")
-    </script>
-    
+<!-- Light/Dark clean background -->
+<div class="min-h-screen 
+            bg-gray-100 dark:bg-gray-900
+            text-gray-800 dark:text-gray-200
+            pt-24 pb-12">
+
+    <div class="max-w-5xl mx-auto px-4">
+
+        <!-- Header -->
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-8 text-center">
+            About Smart Contact Manager
+        </h1>
+
+        <!-- About Section -->
+        <div class="bg-white dark:bg-gray-800 
+                    p-6 md:p-8 rounded-2xl shadow-md border border-gray-200 dark:border-gray-700">
+
+            <p class="text-lg leading-relaxed mb-6">
+                <b>Smart Contact Manager</b> is a modern web application built by 
+                <b>Ayush Chaudhary</b>, a B.Tech Computer Science student.
+                The system helps users store, organize, and manage personal & professional contacts 
+                in a clean and efficient way.
+            </p>
+
+            
+
+            <p class="text-lg leading-relaxed">
+                This platform allows users to add, view, update, delete, and categorize contacts.
+                Designed with a clean UI, responsive layout, and dark mode support, 
+                Smart Contact Manager focuses on usability, smooth navigation, 
+                and privacy-friendly contact storage.
+            </p>
+
+        </div>
+
+        <!-- Mission & Vision -->
+        <div class="mt-12 grid md:grid-cols-2 gap-6">
+
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md 
+                        p-6 border border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-bold mb-3">🎯 Our Mission</h2>
+                <p>
+                    To deliver a secure, fast, and user-friendly contact management system 
+                    suitable for students, professionals, and businesses.
+                </p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-md 
+                        p-6 border border-gray-200 dark:border-gray-700">
+                <h2 class="text-2xl font-bold mb-3">🚀 Our Vision</h2>
+                <p>
+                    To evolve into the simplest and smartest contact management platform 
+                    with modern features and an intuitive user experience.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+    <footer class="max-w-7xl mx-auto px-6 py-14">
+        <div class="border-t border-gray-300/50 dark:border-gray-700/50 my-8"></div>
+
+        <!-- Main Grid -->
+        <div class="grid md:grid-cols-4 gap-10">
+
+            <!-- Brand -->
+            <div>
+                <h2 class="text-2xl font-extrabold 
+                           bg-clip-text text-transparent 
+                           bg-gradient-to-r from-purple-600 to-pink-500">
+                    Smart Contact Manager
+                </h2>
+
+                <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                    A secure and smart way to store, manage and access all your contacts,
+                    designed for speed, privacy, and simplicity.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3 
+                           text-gray-800 dark:text-gray-200">Quick Links</h3>
+                <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                    <li><a th:href="@{/}" class="hover:text-purple-500 dark:hover:text-purple-300">Home</a></li>
+                    <li><a th:href="@{/about}" class="hover:text-purple-500 dark:hover:text-purple-300">About</a></li>
+                    <li><a th:href="@{/services}" class="hover:text-purple-500 dark:hover:text-purple-300">Services</a></li>
+                    <li><a th:href="@{/contact}" class="hover:text-purple-500 dark:hover:text-purple-300">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3 
+                           text-gray-800 dark:text-gray-200">Support</h3>
+                <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                    <li><a h:href="@{/contact}" class="hover:text-indigo-500 dark:hover:text-indigo-300">Help Center</a></li>
+                    <li><a th:href="@{/services}" class="hover:text-indigo-500 dark:hover:text-indigo-300">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-indigo-500 dark:hover:text-indigo-300">Terms of Use</a></li>
+                    <li><a th:href="@{/contact}" class="hover:text-indigo-500 dark:hover:text-indigo-300">Report Issue</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3 
+                           text-gray-800 dark:text-gray-200">Contact Us</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    📧 Email: <b>ayushchaudhary0909@gmail.com</b> <br>
+                    📱 Phone: <b>+91 98765 43210</b> <br>
+                    🌍 INDIA • B.Tech Project
+                </p>
+
+                <!-- Social Icons -->
+                <div class="flex gap-4 mt-4">
+                    <a href="#" class="text-2xl text-blue-600 dark:text-blue-400 hover:scale-110 transition">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-2xl text-cyan-500 dark:text-cyan-300 hover:scale-110 transition">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-2xl text-pink-600 dark:text-pink-400 hover:scale-110 transition">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-2xl text-gray-900 dark:text-white hover:scale-110 transition">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-300/50 dark:border-gray-700/50 my-8"></div>
+
+        <!-- Bottom -->
+        <div class="text-center text-sm text-gray-600 dark:text-gray-400">
+            © 2025 Smart Contact Manager — Made with ❤️ by Ayush Chaudhary  
+            <br>All Rights Reserved.
+        </div>
+
+    </footer>
+
+
+
+</div>
 </body>
+
+<script>
+    console.log("about page loaded");
+</script>
+
 </html>

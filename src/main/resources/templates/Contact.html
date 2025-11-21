@@ -1,15 +1,216 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{base :: parent(~{:: #content},~{::title},~{::script})}">
-    <title>contact page</title>
-<body>
-    
-    <div id="content">
-        this is contact page content
-    </div>
+<html lang="en"
+      th:replace="~{base :: parent(~{:: #content}, ~{::title}, ~{::script})}">
+<title>Contact | Smart Contact Manager</title>
 
-    <script>
-        console.log("contact page")
-    </script>
-    
+<body>
+<div id="content">
+
+<!-- Solid Background (Light/Dark) -->
+<div class="min-h-screen 
+            bg-gray-100 dark:bg-gray-900 
+            text-gray-800 dark:text-gray-200 
+            pt-24 pb-12">
+
+    <div class="max-w-5xl mx-auto px-4">
+
+        <!-- Page Title -->
+        <h1 class="text-4xl md:text-5xl text-center font-extrabold mb-12">
+            Contact Us
+        </h1>
+
+        <div class="grid md:grid-cols-2 gap-8">
+
+            <!-- Contact Information -->
+            <div class="p-6 md:p-8 bg-white dark:bg-gray-800 
+                        rounded-2xl shadow-md border border-gray-200 dark:border-gray-700">
+
+                <h2 class="text-3xl font-bold mb-4">📬 Get in Touch</h2>
+                <p class="opacity-90 mb-4">
+                    Have questions or suggestions? Ayush would love to hear from you!
+                </p>
+
+                <p class="mb-2">📧 Email: <b>ayushchaudhary0909@gmail.com</b></p>
+                <p class="mb-2">📱 Phone: <b>+91 98765 43210</b></p>
+                <p class="">🌍 Smart Contact Manager • B.Tech Final Year Project</p>
+
+                <!-- Social Links -->
+                <div class="mt-6">
+                    <h3 class="text-xl font-semibold mb-3">🔗 Follow Me</h3>
+
+                    <div class="flex space-x-4 text-indigo-600 dark:text-indigo-400">
+
+                        <a href="https://github.com" target="_blank"
+                           class="hover:underline font-medium">
+                           <i class="fa-brands fa-github"></i>
+                            GitHub
+                        </a>
+
+                        <a href="https://linkedin.com" target="_blank"
+                           class="hover:underline font-medium">
+                           <i class="fa-brands fa-linkedin"></i>
+                            LinkedIn
+                        </a>
+
+                        <a href="mailto:ayushchaudhary0909@gmail.com"
+                           class="hover:underline font-medium">
+                           <i class="fa-solid fa-envelope"></i>
+                            Email
+                        </a>
+
+                         
+
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Contact Form -->
+            <div class="p-6 md:p-8 bg-white dark:bg-gray-800 
+                        rounded-2xl shadow-md border border-gray-200 dark:border-gray-700">
+
+                <h2 class="text-3xl font-bold mb-4">📝 Send a Message</h2>
+
+                <form th:action="@{/contact}" method="post" class="space-y-5">
+
+                    <!-- Name -->
+                    <div>
+                        <label class="block mb-1 font-medium">Your Name</label>
+                        <input type="text" name="name" required
+                               class="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 
+                                      border border-gray-300 dark:border-gray-600 
+                                      focus:ring-2 focus:ring-indigo-500 outline-none">
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        <label class="block mb-1 font-medium">Your Email</label>
+                        <input type="email" name="email" required
+                               class="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 
+                                      border border-gray-300 dark:border-gray-600 
+                                      focus:ring-2 focus:ring-indigo-500 outline-none">
+                    </div>
+
+                    <!-- Message -->
+                    <div>
+                        <label class="block mb-1 font-medium">Message</label>
+                        <textarea name="message" rows="4" required
+                                  class="w-full p-3 rounded-lg bg-gray-100 dark:bg-gray-700 
+                                         border border-gray-300 dark:border-gray-600 
+                                         focus:ring-2 focus:ring-indigo-500 outline-none"></textarea>
+                    </div>
+
+                    <!-- Button -->
+                    <button type="submit"
+                            class="w-full bg-indigo-600 dark:bg-indigo-500 
+                                   hover:bg-indigo-700 dark:hover:bg-indigo-400 
+                                   text-white py-3 rounded-lg text-lg font-semibold 
+                                   shadow-md transition">
+                        Send Message →
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+    <footer class="max-w-7xl mx-auto px-6 py-14">
+        <div class="border-t border-gray-300/50 dark:border-gray-700/50 my-8"></div>
+
+        <!-- Main Grid -->
+        <div class="grid md:grid-cols-4 gap-10">
+
+            <!-- Brand -->
+            <div>
+                <h2 class="text-2xl font-extrabold 
+                           bg-clip-text text-transparent 
+                           bg-gradient-to-r from-purple-600 to-pink-500">
+                    Smart Contact Manager
+                </h2>
+
+                <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                    A secure and smart way to store, manage and access all your contacts,
+                    designed for speed, privacy, and simplicity.
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3 
+                           text-gray-800 dark:text-gray-200">Quick Links</h3>
+                <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                    <li><a th:href="@{/}" class="hover:text-purple-500 dark:hover:text-purple-300">Home</a></li>
+                    <li><a th:href="@{/about}" class="hover:text-purple-500 dark:hover:text-purple-300">About</a></li>
+                    <li><a th:href="@{/services}" class="hover:text-purple-500 dark:hover:text-purple-300">Services</a></li>
+                    <li><a th:href="@{/contact}" class="hover:text-purple-500 dark:hover:text-purple-300">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Support -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3 
+                           text-gray-800 dark:text-gray-200">Support</h3>
+                <ul class="space-y-2 text-gray-600 dark:text-gray-400 text-sm">
+                    <li><a href="#" class="hover:text-indigo-500 dark:hover:text-indigo-300">Help Center</a></li>
+                    <li><a href="#" class="hover:text-indigo-500 dark:hover:text-indigo-300">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-indigo-500 dark:hover:text-indigo-300">Terms of Use</a></li>
+                    <li><a href="#" class="hover:text-indigo-500 dark:hover:text-indigo-300">Report Issue</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div>
+                <h3 class="text-lg font-semibold mb-3 
+                           text-gray-800 dark:text-gray-200">Contact Us</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm">
+                    📧 Email: <b>ayushchaudhary0909@gmail.com</b> <br>
+                    📱 Phone: <b>+91 98765 43210</b> <br>
+                    🌍 INDIA • B.Tech Project
+                </p>
+
+                <!-- Social Icons -->
+                <div class="flex gap-4 mt-4">
+                    <a href="#" class="text-2xl text-blue-600 dark:text-blue-400 hover:scale-110 transition">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-2xl text-cyan-500 dark:text-cyan-300 hover:scale-110 transition">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-2xl text-pink-600 dark:text-pink-400 hover:scale-110 transition">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-2xl text-gray-900 dark:text-white hover:scale-110 transition">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-300/50 dark:border-gray-700/50 my-8"></div>
+
+        <!-- Bottom -->
+        <div class="text-center text-sm text-gray-600 dark:text-gray-400">
+            © 2025 Smart Contact Manager — Made with ❤️ by Ayush Chaudhary  
+            <br>All Rights Reserved.
+        </div>
+
+    </footer>
+
+
+
+</div>
 </body>
+<script>
+    console.log("contact page loaded");
+</script>
+
 </html>

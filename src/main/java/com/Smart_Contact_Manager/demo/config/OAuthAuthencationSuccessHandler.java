@@ -24,7 +24,7 @@ import com.Smart_Contact_Manager.demo.users.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.var;
+
 
 
 @Component
@@ -45,13 +45,13 @@ public class OAuthAuthencationSuccessHandler implements AuthenticationSuccessHan
 
             //identify the provider
 
-            var oauth2AuthenticationToken = (OAuth2AuthenticationToken) authentication;
+             OAuth2AuthenticationToken oauth2AuthenticationToken = (OAuth2AuthenticationToken) authentication;
 
             String authorizedClientRegistrationId = oauth2AuthenticationToken.getAuthorizedClientRegistrationId();
 
             logger.info(authorizedClientRegistrationId);
 
-            var oauthUser = (DefaultOAuth2User) authentication.getPrincipal();
+            DefaultOAuth2User oauthUser = (DefaultOAuth2User) authentication.getPrincipal();
 
             oauthUser.getAttributes().forEach((key,value) ->
             {
