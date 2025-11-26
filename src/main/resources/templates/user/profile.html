@@ -22,16 +22,13 @@
         <div class="flex flex-col items-center">
             
             <!-- Default SELF image -->
-            <img th:if="${loggedinuser.provider.name() == 'SELF'}"
-                 src="/images/boy.png"
-                 class="h-32 w-32 rounded-full shadow-lg border-2 border-gray-300 dark:border-gray-700"
-                 alt="default profile">
+           <img th:if="${loggedinuser.provider.name() == 'SELF'}"
+           src="/images/boy.png"
+           class="h-20 w-20 rounded-full shadow-lg border border-gray-300 dark:border-gray-700" />
 
-            <!-- Google / GitHub image -->
-            <img th:if="${loggedinuser.provider.name() != 'SELF'}"
-                 th:src="${loggedinuser.profilepic}"
-                 class="h-32 w-32 rounded-full shadow-lg border-2 border-gray-300 dark:border-gray-700"
-                 alt="user profile">
+      <img th:if="${loggedinuser.provider.name() != 'SELF'}"
+           th:src="${loggedinuser.profilepic}"
+           class="h-20 w-20 rounded-full shadow-lg border border-gray-300 dark:border-gray-700" />
 
             <h1 class="mt-4 text-3xl font-bold text-gray-800 dark:text-gray-100"
                 data-th-text="${loggedinuser.name}">
