@@ -45,6 +45,7 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
                 String token = user.getEmailToken();
 
                String verifyLink = Helper.getLinkForEmailVerification(token);
+               // String verifyLink = "http://localhost:8080/auth/verify-email?token=" + token;
 
 
                 emailService.sendEmail(
