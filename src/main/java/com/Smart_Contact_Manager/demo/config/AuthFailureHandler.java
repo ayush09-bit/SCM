@@ -8,6 +8,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
+import com.Smart_Contact_Manager.demo.helper.Helper;
 import com.Smart_Contact_Manager.demo.helper.Message;
 import com.Smart_Contact_Manager.demo.helper.MessageType;
 import com.Smart_Contact_Manager.demo.repositories.UserRepopsitory;
@@ -43,7 +44,8 @@ public class AuthFailureHandler implements AuthenticationFailureHandler {
             if (user != null) {
                 String token = user.getEmailToken();
 
-                String verifyLink = "http://localhost:8080/auth/verify-email?token=" + token;
+               String verifyLink = Helper.getLinkForEmailVerification(token);
+
 
                 emailService.sendEmail(
                     email,

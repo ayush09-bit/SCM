@@ -1,56 +1,47 @@
 package com.Smart_Contact_Manager.demo.helper;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class Helper {
 
-    public static String getEmailOfLoggedInUser(Authentication authentication)
-    {
-       
+    // Will be injected from application.properties
+    private static String BASE_URL;
 
-        //how to find email b
-        if(authentication instanceof OAuth2AuthenticationToken)
-        {
-           var oAuth2AuthenticationToken = (OAuth2AuthenticationToken)authentication;
-            var clientId = oAuth2AuthenticationToken.getAuthorizedClientRegistrationId();
-            var oauth2user = (OAuth2User)authentication.getPrincipal();
-            var username = "";
-
-
-            //logged in with google
-            if(clientId.equalsIgnoreCase("google"))
-            {
-                System.out.println("google client");
-                username = oauth2user.getAttribute("email").toString();
-                
-            }
-        //logged in with github
-          else if(clientId.equalsIgnoreCase("github"))
-          {
-            System.out.println("loggeg in from github");
-            username = oauth2user.getAttribute("email") != null ?oauth2user.getAttribute("email").toString() : oauth2user.getAttribute("login").toString() + "@gmail.com";
-            
-          }
-          return username;
-
-        }
-        //logged in with emaail and password
-        else{
-            System.out.println("logged in from database");
-            return authentication.getName();
-        }
-
-        
+    @Value("${app.base-url}")
+    public void setBaseUrl(String baseUrl) {
+        BASE_URL = baseUrl;
     }
 
+    public static String getEmailOfLoggedInUser(Authentication authentication) {
 
-    public static String getLinkForEmailVerification(String emailToken)
+        if (authentication instanceof OAuth2AuthenticationToken token) {
 
-    {
-        String link = "http://localhost:8080/auth/verify-email?token=" + emailToken;
+            String clientId = token.getAuthorizedClientRegistrationId();
+            OAuth2User oauth2user = (OAuth2User) authentication.getPrincipal();
 
-        return link;
+            // logged in with google
+            if ("google".equalsIgnoreCase(clientId)) {
+                return oauth2user.getAttribute("email");
+            }
+
+            // logged in with github
+            if ("github".equalsIgnoreCase(clientId)) {
+                return oauth2user.getAttribute("email") != null
+                        ? oauth2user.getAttribute("email")
+                        : oauth2user.getAttribute("login") + "@gmail.com";
+            }
+        }
+
+        // logged in with email + password
+        return authentication.getName();
+    }
+
+    public static String getLinkForEmailVerification(String emailToken) {
+        return BASE_URL + "/auth/verify-email?token=" + emailToken;
     }
 }
