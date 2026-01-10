@@ -35,28 +35,32 @@ public class UserServicesImpl implements UserServices {
     @Override
     public User saveUser(User user) {
 
-        //user id must be generated dynamically
-        String userId=UUID.randomUUID().toString();
-        user.setUserId(userId);
+    String userId = UUID.randomUUID().toString();
+    user.setUserId(userId);
 
-        //password encoder
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        //set user role
+    user.setPassword(passwordEncoder.encode(user.getPassword()));
+    user.setRoleList(List.of(AppConstants.ROLE_USER));
 
-        user.setRoleList(List.of(AppConstants.ROLE_USER));
-        logger.info(user.getProvider().toString());
+    String emailToken = UUID.randomUUID().toString();
+    user.setEmailToken(emailToken);
 
+    User savedUser = userRepo.save(user);
 
-        String emailToken = UUID.randomUUID().toString();
-        user.setEmailToken(emailToken);
-        User savedUser = userRepo.save(user);
+    String emailLink = Helper.getLinkForEmailVerification(emailToken);
 
-        String emailLink = Helper.getLinkForEmailVerification(emailToken);
-
-        emailService.sendEmail(savedUser.getEmail(), "verify Account", emailLink);
-
-        return savedUser;
+    try {
+        emailService.sendEmail(
+            savedUser.getEmail(),
+            "Verify Account",
+            emailLink
+        );
+    } catch (Exception e) {
+        logger.error("Email sending failed (production safe): {}", e.getMessage());
     }
+
+    return savedUser;
+}
+
 
     @Override
     public Optional<User> getUserById(String id) {

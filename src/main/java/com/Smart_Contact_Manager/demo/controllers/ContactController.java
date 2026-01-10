@@ -113,7 +113,7 @@ public class ContactController {
 
         session.setAttribute("message", 
         Message.builder()
-        .content("You have successfully added a new contact")
+        .content("You have successfully added a new contact ")
         .type(MessageType.green)
         .build()
         );
