@@ -103,7 +103,7 @@ public class PageController {
         {
             return "register";
         }
-
+ 
         //save to database 
 
         User savedUser = userService.saveUser(user);
